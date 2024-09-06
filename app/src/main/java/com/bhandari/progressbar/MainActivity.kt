@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -17,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.MutableLiveData
 import com.bhandari.progressbar.ui.theme.ProgressBarTheme
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.draw.clip
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -39,8 +41,8 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             while (true) {
-                delay(1000)
-                currentProgress.value = currentProgress.value?.plus(0.01f)
+                delay(10)
+                currentProgress.value = currentProgress.value?.plus(0.001f)
             }
         }
     }
@@ -52,6 +54,7 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
         modifier = modifier
             .fillMaxSize()
             .background(Color.Gray)
+            .clip(RoundedCornerShape(1000f))
     ) {
         WaveProgress(progress, modifier = Modifier.fillMaxSize())
     }
