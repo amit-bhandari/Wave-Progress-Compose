@@ -41,8 +41,10 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             while (true) {
-                delay(10)
-                currentProgress.value = currentProgress.value?.plus(0.001f)
+                delay(30)
+                if(currentProgress.value!! >= 1f)
+                    currentProgress.value = 0f
+                currentProgress.value = currentProgress.value?.plus(0.01f)
             }
         }
     }

@@ -1,34 +1,61 @@
 package com.bhandari.progressbar
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
+import kotlin.math.PI
 import kotlin.math.sin
 
 @Composable
 fun WaveProgress(progress: Float, modifier: Modifier = Modifier) {
+    val phaseShift = remember { Animatable(0f) }
+
+    LaunchedEffect(Unit) {
+        phaseShift.animateTo(
+            targetValue = (2 * PI).toFloat(),
+            animationSpec = infiniteRepeatable(
+                animation = tween(durationMillis = 2000, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart
+            )
+        )
+    }
+
     Box(
         modifier = modifier
             .drawBehind {
-                val sinePath = Path()
                 val amplitude = 50f
-                val phaseShift = 1.5f
-                val position = size.height / 2 //(1 - progress) * size.height
+                //val position = (1 - progress) * size.height
+                val position = size.height / 2
                 val frequency = 2
+                val step = 2
 
-                prepareSinePath(sinePath, size.width, frequency, amplitude, phaseShift, position)
+                val sinePath = Path()
+                prepareSinePath(sinePath, size.width, frequency, amplitude, phaseShift.value, position, step)
+                drawPath(path = sinePath, color = Color.Blue, style = Stroke(width = 8f))
 
-                drawPath(
-                    path = sinePath,
-                    color = Color.Blue,
-                    style = Stroke(width = 4f)
-                )
+                Path()
+                    .apply {
+                        addPath(sinePath)
+                        lineTo(size.width, size.height)
+                        lineTo(0f, size.height)
+                        close()
+                        drawPath(path = this, color = Color.Blue, style = Fill)
+                    }
             }
     )
 }
@@ -39,17 +66,15 @@ fun prepareSinePath(
     frequency: Int,
     amplitude: Float,
     phaseShift: Float,
-    position: Float
+    position: Float,
+    step: Int
 ) {
-    val midY = position//(1 - phaseShift) * height
-
-    // Starting point of the sine wave
-    path.moveTo(0f, midY)
-
-    // Create the sine wave by iterating over the width of the canvas
-    for (x in 0..width.toInt() step 10) {
-        val y = midY + (amplitude * sin((x * frequency * Math.PI / width + phaseShift * 100).toFloat())).toFloat()
-        path.lineTo(x.toFloat(), y)
+    for (x in 0..width.toInt() step step) {
+        val y = position + amplitude * sin(x * frequency * Math.PI / width + phaseShift).toFloat()
+        if (path.isEmpty)
+            path.moveTo(x.toFloat(), y)
+        else
+            path.lineTo(x.toFloat(), y)
     }
 }
 
@@ -57,5 +82,11 @@ fun prepareSinePath(
 @Preview
 @Composable
 fun WaveProgressPreview() {
-    WaveProgress(progress = 0.5f, modifier = Modifier.fillMaxSize())
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        WaveProgress(progress = 0.5f, modifier = Modifier.fillMaxSize())
+    }
 }
