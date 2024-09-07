@@ -19,6 +19,7 @@ import androidx.lifecycle.MutableLiveData
 import com.bhandari.progressbar.ui.theme.ProgressBarTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.lifecycle.lifecycleScope
 import com.bhandari.wave_progress.WaveProgress
 import kotlinx.coroutines.delay
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             while (true) {
                 delay(30)
-                if(currentProgress.value!! >= 1f)
+                if (currentProgress.value!! >= 1f)
                     currentProgress.value = 0f
                 currentProgress.value = currentProgress.value?.plus(0.001f)
             }
@@ -59,7 +60,11 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
             .clip(RoundedCornerShape(1000f))
             .background(Color.Gray)
     ) {
-        WaveProgress(progress, modifier = Modifier.fillMaxSize())
+        WaveProgress(
+            progress = progress,
+            modifier = Modifier.fillMaxSize(),
+            fillBrush = Brush.verticalGradient(listOf(Color.Magenta, Color.Cyan))
+        )
     }
 }
 

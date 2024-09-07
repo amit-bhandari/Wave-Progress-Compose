@@ -24,15 +24,14 @@ import kotlinx.coroutines.launch
 import kotlin.also
 import kotlin.apply
 import kotlin.math.PI
-import kotlin.math.sin
-import kotlin.ranges.step
 
 @Composable
 fun WaveProgress(
-    progress: Float,
     modifier: Modifier = Modifier,
+    progress: Float,
+    fillBrush: Brush? = null,
+    color: Color? = null,
     amplitudeRange: Range<Float> = Range(20f, 80f),
-    fillBrush: Brush = Brush.horizontalGradient(listOf(Color.Red, Color.Blue)),
     waveSteps: Int = 20,
     waveFrequency: Int = 2,
 ) {
@@ -73,29 +72,19 @@ fun WaveProgress(
                         lineTo(size.width, size.height)
                         lineTo(0f, size.height)
                         close()
-                    }.also { drawPath(path = it, brush = fillBrush, style = Fill) }
+                    }
+                    .also {
+                        if (fillBrush != null) {
+                            drawPath(path = it, brush = fillBrush, style = Fill)
+                        } else if (color != null) {
+                            drawPath(path = it, color = color, style = Fill)
+                        } else {
+                            throw IllegalArgumentException("Either fillBrush or color must be provided")
+                        }
+                    }
             }
     )
 }
-
-fun prepareSinePath(
-    path: Path,
-    width: Float,
-    frequency: Int,
-    amplitude: Float,
-    phaseShift: Float,
-    position: Float,
-    step: Int
-) {
-    for (x in 0..width.toInt() step step) {
-        val y = position + amplitude * sin(x * frequency * Math.PI / width + phaseShift).toFloat()
-        if (path.isEmpty)
-            path.moveTo(x.toFloat(), y)
-        else
-            path.lineTo(x.toFloat(), y)
-    }
-}
-
 
 @Preview
 @Composable
