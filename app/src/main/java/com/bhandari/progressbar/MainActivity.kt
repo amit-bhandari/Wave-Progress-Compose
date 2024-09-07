@@ -53,8 +53,8 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.Gray)
             .clip(RoundedCornerShape(1000f))
+            .background(Color.Gray)
     ) {
         WaveProgress(progress, modifier = Modifier.fillMaxSize())
     }
