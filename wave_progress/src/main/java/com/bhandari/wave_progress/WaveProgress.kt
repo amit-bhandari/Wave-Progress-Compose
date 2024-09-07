@@ -1,4 +1,4 @@
-package com.bhandari.progressbar
+package com.bhandari.wave_progress
 
 import android.util.Range
 import androidx.compose.animation.core.Animatable
@@ -21,8 +21,11 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
+import kotlin.also
+import kotlin.apply
 import kotlin.math.PI
 import kotlin.math.sin
+import kotlin.ranges.step
 
 @Composable
 fun WaveProgress(
@@ -33,11 +36,9 @@ fun WaveProgress(
     waveSteps: Int = 20,
     waveFrequency: Int = 2,
 ) {
+    val coroutineScope = rememberCoroutineScope()
     val phaseShift = remember { Animatable(0f) }
     val amplitude = remember { Animatable(amplitudeRange.lower) }
-
-    // Coroutine scope for running concurrent animations
-    val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {

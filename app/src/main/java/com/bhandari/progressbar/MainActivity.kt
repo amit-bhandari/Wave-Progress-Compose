@@ -20,6 +20,7 @@ import com.bhandari.progressbar.ui.theme.ProgressBarTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.draw.clip
 import androidx.lifecycle.lifecycleScope
+import com.bhandari.wave_progress.WaveProgress
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
