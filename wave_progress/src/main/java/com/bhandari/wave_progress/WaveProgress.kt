@@ -34,6 +34,8 @@ fun WaveProgress(
     amplitudeRange: Range<Float> = Range(20f, 80f),
     waveSteps: Int = 20,
     waveFrequency: Int = 2,
+    phaseShiftDuration: Int = 2000,
+    amplitudeDuration: Int = 2000,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val phaseShift = remember { Animatable(0f) }
@@ -44,17 +46,16 @@ fun WaveProgress(
             phaseShift.animateTo(
                 targetValue = (2 * PI).toFloat(),
                 animationSpec = infiniteRepeatable(
-                    animation = tween(durationMillis = 2000, easing = LinearEasing),
+                    animation = tween(durationMillis = phaseShiftDuration, easing = LinearEasing),
                     repeatMode = RepeatMode.Restart
                 )
             )
         }
-
         coroutineScope.launch {
             amplitude.animateTo(
                 targetValue = amplitudeRange.upper,
                 animationSpec = infiniteRepeatable(
-                    animation = tween(durationMillis = 2000, easing = LinearEasing),
+                    animation = tween(durationMillis = amplitudeDuration, easing = LinearEasing),
                     repeatMode = RepeatMode.Reverse
                 )
             )

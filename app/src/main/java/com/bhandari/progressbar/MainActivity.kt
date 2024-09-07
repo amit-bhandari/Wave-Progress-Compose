@@ -63,7 +63,7 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
         WaveProgress(
             progress = progress,
             modifier = Modifier.fillMaxSize(),
-            fillBrush = Brush.verticalGradient(listOf(Color.Magenta, Color.Cyan))
+            fillBrush = Brush.horizontalGradient(listOf(Color.Magenta, Color.Cyan)),
         )
     }
 }
