@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                 delay(30)
                 if(currentProgress.value!! >= 1f)
                     currentProgress.value = 0f
-                currentProgress.value = currentProgress.value?.plus(0.01f)
+                currentProgress.value = currentProgress.value?.plus(0.001f)
             }
         }
     }

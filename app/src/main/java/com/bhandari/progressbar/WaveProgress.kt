@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
@@ -18,34 +19,51 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.launch
 import kotlin.math.PI
 import kotlin.math.sin
 
 @Composable
 fun WaveProgress(progress: Float, modifier: Modifier = Modifier) {
     val phaseShift = remember { Animatable(0f) }
+    val amplitude = remember { Animatable(20f) }
+
+    // Coroutine scope for running concurrent animations
+    val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
-        phaseShift.animateTo(
-            targetValue = (2 * PI).toFloat(),
-            animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 2000, easing = LinearEasing),
-                repeatMode = RepeatMode.Restart
+        coroutineScope.launch {
+            phaseShift.animateTo(
+                targetValue = (2 * PI).toFloat(),
+                animationSpec = infiniteRepeatable(
+                    animation = tween(durationMillis = 2000, easing = LinearEasing),
+                    repeatMode = RepeatMode.Restart
+                )
             )
-        )
+        }
+
+        coroutineScope.launch {
+            amplitude.animateTo(
+                targetValue = 80f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(durationMillis = 2000, easing = LinearEasing),
+                    repeatMode = RepeatMode.Reverse
+                )
+            )
+        }
     }
 
     Box(
         modifier = modifier
             .drawBehind {
-                val amplitude = 50f
-                //val position = (1 - progress) * size.height
-                val position = size.height / 2
+                println(amplitude.value)
+                val position = (1 - progress) * size.height
+                //val position = size.height / 2
                 val frequency = 2
                 val step = 2
 
                 val sinePath = Path()
-                prepareSinePath(sinePath, size.width, frequency, amplitude, phaseShift.value, position, step)
+                prepareSinePath(sinePath, size.width, frequency, amplitude.value, phaseShift.value, position, step)
                 drawPath(path = sinePath, color = Color.Blue, style = Stroke(width = 8f))
 
                 Path()
