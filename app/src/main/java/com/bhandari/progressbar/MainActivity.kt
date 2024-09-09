@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.bhandari.progressbar.ui.theme.ProgressBarTheme
+import com.bhandari.wave_progress.WaveDirection
 import com.bhandari.wave_progress.WaveProgress
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -86,6 +87,7 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
                     progress = progress,
                     modifier = Modifier.fillMaxSize(),
                     fillBrush = Brush.horizontalGradient(listOf(Color.Magenta, Color.Cyan)),
+                    waveDirection = WaveDirection.LEFT
                 )
             }
         }

@@ -25,6 +25,8 @@ import kotlin.also
 import kotlin.apply
 import kotlin.math.PI
 
+enum class WaveDirection { RIGHT, LEFT }
+
 @Composable
 fun WaveProgress(
     modifier: Modifier = Modifier,
@@ -36,6 +38,7 @@ fun WaveProgress(
     waveFrequency: Int = 3,
     phaseShiftDuration: Int = 2000,
     amplitudeDuration: Int = 2000,
+    waveDirection: WaveDirection = WaveDirection.RIGHT
 ) {
     val coroutineScope = rememberCoroutineScope()
     val phaseShift = remember { Animatable(0f) }
@@ -65,12 +68,16 @@ fun WaveProgress(
     Box(
         modifier = modifier
             .drawBehind {
-                println("Size ${size.width} ${size.height }")
+                println("Size ${size.width} ${size.height}")
                 val yPos = (1 - progress) * size.height
 
                 Path()
                     .apply {
-                        prepareSinePath(this, size, waveFrequency, amplitude.value, phaseShift.value, yPos, waveSteps)
+                        val phaseShiftLocal = when (waveDirection) {
+                            WaveDirection.RIGHT -> -phaseShift.value
+                            WaveDirection.LEFT -> phaseShift.value
+                        }
+                        prepareSinePath(this, size, waveFrequency, amplitude.value, phaseShiftLocal, yPos, waveSteps)
                         lineTo(size.width, size.height)
                         lineTo(0f, size.height)
                         close()
