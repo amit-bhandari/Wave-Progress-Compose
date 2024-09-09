@@ -33,7 +33,7 @@ fun WaveProgress(
     progress: Float,
     fillBrush: Brush? = null,
     color: Color? = null,
-    amplitudeRange: Range<Float> = Range(30f, 50f),
+    amplitudeRange: ClosedFloatingPointRange<Float> = 30f..50f,
     waveSteps: Int = 20,
     waveFrequency: Int = 3,
     phaseShiftDuration: Int = 2000,
@@ -42,7 +42,7 @@ fun WaveProgress(
 ) {
     val coroutineScope = rememberCoroutineScope()
     val phaseShift = remember { Animatable(0f) }
-    val amplitude = remember { Animatable(amplitudeRange.lower) }
+    val amplitude = remember { Animatable(amplitudeRange.start) }
 
     LaunchedEffect(Unit) {
         coroutineScope.launch {
@@ -56,7 +56,7 @@ fun WaveProgress(
         }
         coroutineScope.launch {
             amplitude.animateTo(
-                targetValue = amplitudeRange.upper,
+                targetValue = amplitudeRange.endInclusive,
                 animationSpec = infiniteRepeatable(
                     animation = tween(durationMillis = amplitudeDuration, easing = LinearEasing),
                     repeatMode = RepeatMode.Reverse
@@ -68,7 +68,7 @@ fun WaveProgress(
     Box(
         modifier = modifier
             .drawBehind {
-                println("Size ${size.width} ${size.height}")
+                println("Duration ${amplitudeDuration} ${phaseShiftDuration}")
                 val yPos = (1 - progress) * size.height
 
                 Path()
