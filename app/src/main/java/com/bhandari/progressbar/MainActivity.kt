@@ -8,13 +8,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Slider
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -72,9 +73,7 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1f)
-                .padding(10.dp)
         ) {
-
             Card(
                 modifier = Modifier
                     .padding(24.dp)
@@ -92,7 +91,71 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
             }
         }
 
-        Text("Captain", modifier = Modifier.weight(1f))
+        Column(modifier = Modifier.weight(1f)) {
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Progress", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Min Amplitude", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Max Amplitude", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Frequency", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Steps", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("PhaseShift Duration", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Amplitude Duration", modifier = Modifier.align(Alignment.CenterVertically))
+                Slider(
+                    value = 0.5f,
+                    onValueChange = { }
+                )
+            }
+
+            Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
+                Text("Direction", modifier = Modifier.align(Alignment.CenterVertically))
+                Switch(true, onCheckedChange = {
+
+                })
+            }
+
+        }
     }
 }
 
