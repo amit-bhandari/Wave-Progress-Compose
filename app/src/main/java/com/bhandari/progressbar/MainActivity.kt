@@ -73,6 +73,6 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
 @Composable
 fun GreetingPreview() {
     ProgressBarTheme {
-        Activity(progress = 0f)
+        Activity(progress = 1f)
     }
 }
