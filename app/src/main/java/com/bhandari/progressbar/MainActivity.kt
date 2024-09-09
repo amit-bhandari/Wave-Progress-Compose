@@ -5,19 +5,27 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.bhandari.progressbar.ui.theme.ProgressBarTheme
@@ -46,7 +54,7 @@ class MainActivity : ComponentActivity() {
                 delay(30)
                 if (currentProgress.value!! >= 1f)
                     currentProgress.value = 0f
-                currentProgress.value = currentProgress.value?.plus(0.001f)
+                currentProgress.value = currentProgress.value?.plus(0.002f)
             }
         }
     }
@@ -54,16 +62,33 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Activity(modifier: Modifier = Modifier, progress: Float) {
-    Column (
+    Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color.Gray)
     ) {
-        WaveProgress(
-            progress = progress,
-            modifier = Modifier.fillMaxWidth().weight(1f),
-            fillBrush = Brush.horizontalGradient(listOf(Color.Magenta, Color.Cyan)),
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .weight(1f)
+                .padding(10.dp)
+        ) {
+
+            Card(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .fillMaxSize()
+                    .align(Alignment.Center)
+                    .clip(CircleShape)
+                    .border(5.dp, Color.White, CircleShape)
+            ) {
+                WaveProgress(
+                    progress = progress,
+                    modifier = Modifier.fillMaxSize(),
+                    fillBrush = Brush.horizontalGradient(listOf(Color.Magenta, Color.Cyan)),
+                )
+            }
+        }
 
         Text("Captain", modifier = Modifier.weight(1f))
     }

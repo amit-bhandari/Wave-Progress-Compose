@@ -15,7 +15,7 @@ fun prepareSinePath(
     position: Float,
     step: Int
 ) {
-    for (x in 0..size.width.toInt() step step) {
+    for (x in 0..size.width.toInt().plus(step) step step) {
         val y = position + amplitude * sin(x * frequency * Math.PI / size.width + phaseShift).toFloat()
         if (path.isEmpty)
             path.moveTo(x.toFloat(), max(0f, min(y, size.height)))

@@ -31,9 +31,9 @@ fun WaveProgress(
     progress: Float,
     fillBrush: Brush? = null,
     color: Color? = null,
-    amplitudeRange: Range<Float> = Range(20f, 80f),
+    amplitudeRange: Range<Float> = Range(30f, 50f),
     waveSteps: Int = 20,
-    waveFrequency: Int = 2,
+    waveFrequency: Int = 3,
     phaseShiftDuration: Int = 2000,
     amplitudeDuration: Int = 2000,
 ) {
