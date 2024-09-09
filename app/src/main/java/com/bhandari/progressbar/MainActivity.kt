@@ -115,7 +115,7 @@ fun Activity(modifier: Modifier = Modifier) {
                 Slider(
                     value = minAmplitude,
                     onValueChange = { minAmplitude = it },
-                    valueRange = 20f..40f
+                    valueRange = 10f..40f
                 )
             }
 
