@@ -5,22 +5,22 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.MutableLiveData
-import com.bhandari.progressbar.ui.theme.ProgressBarTheme
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.lifecycle.lifecycleScope
+import com.bhandari.progressbar.ui.theme.ProgressBarTheme
 import com.bhandari.wave_progress.WaveProgress
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -54,17 +54,18 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Activity(modifier: Modifier = Modifier, progress: Float) {
-    Box(
+    Column (
         modifier = modifier
             .fillMaxSize()
-            .clip(RoundedCornerShape(1000f))
             .background(Color.Gray)
     ) {
         WaveProgress(
             progress = progress,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth().weight(1f),
             fillBrush = Brush.horizontalGradient(listOf(Color.Magenta, Color.Cyan)),
         )
+
+        Text("Captain", modifier = Modifier.weight(1f))
     }
 }
 
@@ -72,6 +73,6 @@ fun Activity(modifier: Modifier = Modifier, progress: Float) {
 @Composable
 fun GreetingPreview() {
     ProgressBarTheme {
-        Activity(progress = 0.5f)
+        Activity(progress = 0f)
     }
 }

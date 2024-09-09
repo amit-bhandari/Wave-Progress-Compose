@@ -65,11 +65,12 @@ fun WaveProgress(
     Box(
         modifier = modifier
             .drawBehind {
+                println("Size ${size.width} ${size.height }")
                 val yPos = (1 - progress) * size.height
 
                 Path()
                     .apply {
-                        prepareSinePath(this, size.width, waveFrequency, amplitude.value, phaseShift.value, yPos, waveSteps)
+                        prepareSinePath(this, size, waveFrequency, amplitude.value, phaseShift.value, yPos, waveSteps)
                         lineTo(size.width, size.height)
                         lineTo(0f, size.height)
                         close()
