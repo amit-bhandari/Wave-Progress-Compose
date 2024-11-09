@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.bhandari.wave_progress"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
