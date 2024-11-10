@@ -74,7 +74,6 @@ fun WaveProgress(
     Box(
         modifier = modifier
             .drawBehind {
-                println("Duration ${amplitudeDuration} ${phaseShiftDuration}")
                 val yPos = (1 - progress) * size.height
 
                 Path()
