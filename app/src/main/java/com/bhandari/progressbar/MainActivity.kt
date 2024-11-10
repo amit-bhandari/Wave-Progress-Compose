@@ -34,8 +34,6 @@ import com.bhandari.wave_progress.WaveProgress
 
 
 class MainActivity : ComponentActivity() {
-    //private val currentProgress = MutableLiveData(0f)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -46,15 +44,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-
-        /*lifecycleScope.launch {
-            while (true) {
-                delay(30)
-                if (currentProgress.value!! >= 1f)
-                    currentProgress.value = 0f
-                currentProgress.value = currentProgress.value?.plus(0.002f)
-            }
-        }*/
     }
 }
 
@@ -174,9 +163,7 @@ fun Activity(modifier: Modifier = Modifier) {
                             else WaveDirection.RIGHT
                     })
                 Text(" Right", modifier = Modifier.align(Alignment.CenterVertically))
-
             }
-
         }
     }
 }
