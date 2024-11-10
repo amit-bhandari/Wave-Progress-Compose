@@ -1,6 +1,5 @@
 package com.bhandari.wave_progress
 
-import android.util.Range
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -44,22 +43,29 @@ fun WaveProgress(
     val phaseShift = remember { Animatable(0f) }
     val amplitude = remember { Animatable(amplitudeRange.start) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(amplitudeRange, amplitudeDuration) {
         coroutineScope.launch {
-            phaseShift.animateTo(
-                targetValue = (2 * PI).toFloat(),
-                animationSpec = infiniteRepeatable(
-                    animation = tween(durationMillis = phaseShiftDuration, easing = LinearEasing),
-                    repeatMode = RepeatMode.Restart
-                )
-            )
-        }
-        coroutineScope.launch {
+            amplitude.stop()
+            amplitude.snapTo(amplitudeRange.start)
             amplitude.animateTo(
                 targetValue = amplitudeRange.endInclusive,
                 animationSpec = infiniteRepeatable(
                     animation = tween(durationMillis = amplitudeDuration, easing = LinearEasing),
                     repeatMode = RepeatMode.Reverse
+                )
+            )
+        }
+    }
+
+    LaunchedEffect(phaseShiftDuration) {
+        coroutineScope.launch {
+            phaseShift.stop()
+            phaseShift.snapTo(0f)
+            phaseShift.animateTo(
+                targetValue = (2 * PI).toFloat(),
+                animationSpec = infiniteRepeatable(
+                    animation = tween(durationMillis = phaseShiftDuration, easing = LinearEasing),
+                    repeatMode = RepeatMode.Restart
                 )
             )
         }
