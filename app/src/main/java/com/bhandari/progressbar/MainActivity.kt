@@ -92,7 +92,7 @@ fun Activity(modifier: Modifier = Modifier) {
 
         Column(modifier = Modifier.weight(1f)) {
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Progress", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Progress", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = progress,
                     onValueChange = { progress = it }
@@ -100,7 +100,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Min Amplitude", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Min Amplitude", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = minAmplitude,
                     onValueChange = { minAmplitude = it },
@@ -109,7 +109,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Max Amplitude", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Max Amplitude", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = maxAmplitude,
                     onValueChange = { maxAmplitude = it },
@@ -118,7 +118,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Frequency", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Frequency", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = frequency.toFloat(),
                     onValueChange = { frequency = it.toInt() },
@@ -127,7 +127,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Steps", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Steps", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = steps.toFloat(),
                     onValueChange = { steps = it.toInt() },
@@ -136,7 +136,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("PhaseShift Duration", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("PhaseShift Duration", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = phaseShiftDuration.toFloat(),
                     onValueChange = { phaseShiftDuration = it.toInt() },
@@ -145,7 +145,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Amplitude Duration", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Amplitude Duration", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Slider(
                     value = amplitudeDuration.toFloat(),
                     onValueChange = { amplitudeDuration = it.toInt() },
@@ -154,7 +154,7 @@ fun Activity(modifier: Modifier = Modifier) {
             }
 
             Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp)) {
-                Text("Direction: Left ", modifier = Modifier.align(Alignment.CenterVertically))
+                Text("Direction: Left ", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
                 Switch(
                     direction == WaveDirection.RIGHT,
                     onCheckedChange = {
@@ -162,7 +162,7 @@ fun Activity(modifier: Modifier = Modifier) {
                             if (direction == WaveDirection.RIGHT) WaveDirection.LEFT
                             else WaveDirection.RIGHT
                     })
-                Text(" Right", modifier = Modifier.align(Alignment.CenterVertically))
+                Text(" Right", modifier = Modifier.align(Alignment.CenterVertically), color = Color.White)
             }
         }
     }
