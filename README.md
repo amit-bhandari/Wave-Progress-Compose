@@ -1,6 +1,24 @@
-MIT License
+## Compose-Stopwatch
+<p>
+  <a href="#"><img alt="Android Language Badge" src="https://badgen.net/badge/OS/Android?icon=https://raw.githubusercontent.com/androiddevnotes/learn-jetpack-compose-android/master/assets/android.svg&color=3ddc84"/></a>
+  <a href="#"><img alt="Kotlin Language Badge" src="https://badgen.net/badge/language/Kotlin?icon=https://raw.githubusercontent.com/androiddevnotes/learn-jetpack-compose-android/master/assets/kotlin.svg&color=f18e33"/></a>
+  <a href="https://github.com/amit-bhandari"><img alt="amit-bhandari GitHub badge" src="https://badgen.net/badge/GitHub/amit-bhandari?icon=github&color=24292e"/></a>
+</p>
 
-Copyright (c) 2024 Amit Bhandari
+<p>
+<img src="https://github.com/user-attachments/assets/7d1d92b8-eedb-4877-83d3-c822e26a6a3e" width="400"  />
+</p>
+
+## Description
+- More details [here](https://amit-bhandari.github.io/posts/wave-progress-bar-compose/)
+- Give a ⭐️ if you like this, its free!
+
+## License
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2016 Danylyk Dmytro
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +37,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
