@@ -1,4 +1,4 @@
-## Compose-Stopwatch
+## Wave-Progress-Compose
 <p>
   <a href="#"><img alt="Android Language Badge" src="https://badgen.net/badge/OS/Android?icon=https://raw.githubusercontent.com/androiddevnotes/learn-jetpack-compose-android/master/assets/android.svg&color=3ddc84"/></a>
   <a href="#"><img alt="Kotlin Language Badge" src="https://badgen.net/badge/language/Kotlin?icon=https://raw.githubusercontent.com/androiddevnotes/learn-jetpack-compose-android/master/assets/kotlin.svg&color=f18e33"/></a>
