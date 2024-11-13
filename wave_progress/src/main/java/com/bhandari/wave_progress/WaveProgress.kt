@@ -26,11 +26,23 @@ import kotlin.math.PI
 
 enum class WaveDirection { RIGHT, LEFT }
 
+/**
+ * Draws a wave progress indicator.
+ *
+ * @param modifier Modifier to be applied to the layout.
+ * @param progress The vertical progress of the wave.
+ * @param fillBrush or color The brush or color to fill the wave.
+ * @param amplitudeRange Highest and lowest point of wave to animate.
+ * @param amplitudeDuration Duration it takes for wave to go from lowest to highest amplitude and vice versa
+ * @param waveSteps number of points which will be drawn on path to generate sine wave across width of component, lesser the steps, more soft wave would be. More the steps, boxy the wave would be. Number can be tweaked as per performance requirement.
+ * @param phaseShiftDuration determines speed of wave moving horizontally
+ * @param waveDirection left or right horizontal movement of sine wave
+ */
 @Composable
 fun WaveProgress(
     modifier: Modifier = Modifier,
     progress: Float,
-    fillBrush: Brush? = null,
+    fillBrush: Brush? = Brush.horizontalGradient(listOf(Color.Magenta, Color.Cyan)),
     color: Color? = null,
     amplitudeRange: ClosedFloatingPointRange<Float> = 30f..50f,
     waveSteps: Int = 20,
