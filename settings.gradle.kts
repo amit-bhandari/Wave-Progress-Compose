@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Progress Bar"
 include(":app")
 include(":wave_progress")
+include(":app:benchmark")
