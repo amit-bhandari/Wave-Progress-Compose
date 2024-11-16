@@ -51,6 +51,7 @@ fun WaveProgress(
     amplitudeDuration: Int = 2000,
     waveDirection: WaveDirection = WaveDirection.RIGHT
 ) {
+    val path = remember { Path() } //reusing same path object to reduce object creation and gc calls
     val coroutineScope = rememberCoroutineScope()
     val phaseShift = remember { Animatable(0f) }
     val amplitude = remember { Animatable(amplitudeRange.start) }
@@ -88,8 +89,9 @@ fun WaveProgress(
             .drawBehind {
                 val yPos = (1 - progress) * size.height
 
-                Path()
+                path
                     .apply {
+                        reset()
                         val phaseShiftLocal = when (waveDirection) {
                             WaveDirection.RIGHT -> -phaseShift.value
                             WaveDirection.LEFT -> phaseShift.value

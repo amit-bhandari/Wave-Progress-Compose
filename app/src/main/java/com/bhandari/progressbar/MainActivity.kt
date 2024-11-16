@@ -54,7 +54,7 @@ fun Activity(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .background(Color.Gray)
     ) {
-        var progress by remember { mutableFloatStateOf(0.2f) }
+        var progress by remember { mutableFloatStateOf(0.4f) }
         var minAmplitude by remember { mutableFloatStateOf(20f) }
         var maxAmplitude by remember { mutableFloatStateOf(50f) }
         var frequency by remember { mutableIntStateOf(3) }
